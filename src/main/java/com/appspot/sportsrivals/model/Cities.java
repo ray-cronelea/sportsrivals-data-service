@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 public class Cities {
 
 	@Id private String id;
-
 	private String name;
 	private Integer rating;
 	private String imageUrl;
@@ -18,6 +17,7 @@ public class Cities {
 		this.imageUrl = imageUrl;
 	}
 
+	public String getId() { return id; }
 	public String getName(){ return name; }
 	public Integer getRating(){ return rating; }
 	public String getImageUrl(){ return imageUrl; }

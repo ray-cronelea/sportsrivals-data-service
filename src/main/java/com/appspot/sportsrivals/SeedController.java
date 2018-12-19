@@ -1,9 +1,6 @@
 package com.appspot.sportsrivals;
 
-import com.appspot.sportsrivals.data.CitiesRepository;
-import com.appspot.sportsrivals.data.SportsRepository;
-import com.appspot.sportsrivals.data.StatesRepository;
-import com.appspot.sportsrivals.data.TeamsRepository;
+import com.appspot.sportsrivals.data.*;
 import com.appspot.sportsrivals.model.Cities;
 import com.appspot.sportsrivals.model.Sports;
 import com.appspot.sportsrivals.model.States;
@@ -27,11 +24,13 @@ public class SeedController {
 	private CitiesRepository citiesRepository;
 	private StatesRepository statesRepository;
 	private TeamsRepository teamsRepository;
+	private FixturesRepository fixturesRepository;
 
 	@Autowired public void setSportsRepository(SportsRepository sportsRepository) { this.sportsRepository = sportsRepository; }
 	@Autowired public void setCitiesRepository(CitiesRepository citiesRepository) { this.citiesRepository = citiesRepository; }
 	@Autowired public void setStatesRepository(StatesRepository statesRepository) { this.statesRepository = statesRepository; }
 	@Autowired public void setTeamsRepositoryInterface(TeamsRepository teamsRepository) { this.teamsRepository = teamsRepository; }
+	@Autowired public void setFixturesRepositoryInterface(FixturesRepository fixturesRepository) { this.fixturesRepository = fixturesRepository; }
 
 	@GetMapping({"", "/", "/all"})
 	public String seedAll(Model model) {

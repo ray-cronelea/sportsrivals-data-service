@@ -6,7 +6,6 @@ import com.appspot.sportsrivals.data.StatesRepository;
 import com.appspot.sportsrivals.data.TeamsRepository;
 import com.appspot.sportsrivals.model.Teams;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,7 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 @Component
-public class RatingTeam {
+public class Rating {
 
 	private SportsRepository sportsRepository;
 	private CitiesRepository citiesRepository;
@@ -27,10 +26,9 @@ public class RatingTeam {
 	@Autowired public void setStatesRepository(StatesRepository statesRepository) { this.statesRepository = statesRepository; }
 	@Autowired public void setTeamsRepositoryInterface(TeamsRepository teamsRepository) { this.teamsRepository = teamsRepository; }
 
-
-	@RabbitListener(queues = "#{queueRatingTeam.name}")
-	public void receiveRatingTeam(String message) throws InterruptedException{
-		System.out.println("queueRatingTeam Received <" + message + ">");
+	@RabbitListener(queues = "#{queueRating.name}")
+	public void receiveRating(String message) throws InterruptedException{
+		System.out.println("queueRating Received <" + message + ">");
 		try {
 			// Convert json string to object
 			// TODO: decide on format of RabbitMQ message format
@@ -53,20 +51,5 @@ public class RatingTeam {
 			e.printStackTrace();
 			System.out.println("Error occurred mapping message to team object");
 		}
-
 	}
-
 }
-
-
-
-/*
-private final MongoTemplate mongoTemplate;
-@Autowired public TeamsRepositoryImpl(MongoTemplate mongoTemplate) { this.mongoTemplate = mongoTemplate; }
-
-@Override
-public List<Teams> findTeamsForStateName(String stateName) {
-	String stateId = mongoTemplate.findOne(query(where("name").is(stateName)), States.class).getId();
-	return mongoTemplate.find(query(where("state").is(stateId)), Teams.class);
-}
-*/

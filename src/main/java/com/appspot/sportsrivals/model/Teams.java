@@ -30,6 +30,7 @@ public class Teams {
 		this.setState(state);
 	}
 
+	public String getId() { return id; }
 	public String getName() { return name; }
 	public Integer getRating() { return rating; }
 	public String getImageUrl() { return imageUrl; }
@@ -38,6 +39,7 @@ public class Teams {
 	public Cities getCity() { return city; }
 	public States getState() { return state; }
 
+	public void setId(String id) { this.id = id; };
 	public void setName(String name) { this.name = name; }
 	public void setRating(Integer rating) { this.rating = rating; }
 	public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }

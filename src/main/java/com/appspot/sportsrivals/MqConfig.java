@@ -10,10 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqConfig {
 
-	private static final String topicExchangeName = "sportsrivals";
-	private static final String queueResults = "results";
-	private static final String queueRatingTeam = "rating-team";
-	private static final String queueRatingLocation = "rating-location";
+	private static final String topicExchangeName = "sportsrivals_local";
+	private static final String queueResults = "results_local";
+	private static final String queueRating = "rating_local";
 
 	@Bean
 	Queue queueResults() {
@@ -22,13 +21,8 @@ public class MqConfig {
 	}
 
 	@Bean
-	Queue queueRatingTeam() {
-		return new Queue(queueRatingTeam);
-	}
-
-	@Bean
-	Queue queueRatingLocation() {
-		return new Queue(queueRatingLocation);
+	Queue queueRating() {
+		return new Queue(queueRating);
 	}
 
 	@Bean
@@ -40,21 +34,14 @@ public class MqConfig {
 	Binding bindingResults(Queue queueResults, TopicExchange exchange) {
 		return BindingBuilder.bind(queueResults)
 				.to(exchange)
-				.with("Results.#");
+				.with("results.#");
 	}
 
 	@Bean
-	Binding bindingRatingLocation(Queue queueRatingLocation, TopicExchange exchange) {
-		return BindingBuilder.bind(queueRatingLocation)
+	Binding bindingRatingTeam(Queue queueRating, TopicExchange exchange) {
+		return BindingBuilder.bind(queueRating)
 				.to(exchange)
-				.with("Rating.Location");
-	}
-
-	@Bean
-	Binding bindingRatingTeam(Queue queueRatingTeam, TopicExchange exchange) {
-		return BindingBuilder.bind(queueRatingTeam)
-				.to(exchange)
-				.with("Rating.Team");
+				.with("rating.#");
 	}
 
 }

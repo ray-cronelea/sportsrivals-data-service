@@ -18,6 +18,7 @@ public class Sports {
 		this.imageUrl = imageUrl;
 	}
 
+	public String getId() { return id; }
 	public String getName(){ return name; }
 	public String getSportName(){ return sportName; }
 	public String getImageUrl(){ return imageUrl; }
