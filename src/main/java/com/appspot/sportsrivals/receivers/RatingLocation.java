@@ -8,7 +8,9 @@ public class RatingLocation {
 
 	@RabbitListener(queues = "#{queueRatingLocation.name}")
 	public void receiveRatingLocation(String message) throws InterruptedException{
-		System.out.println("queueRatingLocation Received <" + message + ">");
+
+
+
 	}
 
 }
