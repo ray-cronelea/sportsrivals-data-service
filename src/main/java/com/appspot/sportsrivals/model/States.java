@@ -13,6 +13,8 @@ public class States {
 	private Integer rating;
 	private String imageUrl;
 
+	public States(){};
+
 	public States(String name, String abbreviation, String capital, Integer rating, String imageUrl){
 		this.name = name;
 		this.abbreviation = abbreviation;

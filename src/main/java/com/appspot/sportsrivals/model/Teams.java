@@ -18,6 +18,8 @@ public class Teams {
 	@DBRef private Cities city;
 	@DBRef private States state;
 
+	public Teams(){}
+
 	public Teams(String name, Integer rating, String imageUrl, String sportRadarId, final Sports sport, final Cities city, final States state) {
 		this.setName(name);
 		this.setRating(rating);

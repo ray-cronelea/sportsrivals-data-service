@@ -10,6 +10,8 @@ public class Sports {
 	private String sportName;
 	private String imageUrl;
 
+	public Sports(){};
+
 	public Sports(String name, String sportName, String imageUrl){
 		this.name = name;
 		this.sportName = sportName;

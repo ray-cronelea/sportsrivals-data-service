@@ -10,6 +10,8 @@ public class Cities {
 	private Integer rating;
 	private String imageUrl;
 
+	public Cities(){};
+
 	public Cities(String name, Integer rating, String imageUrl){
 		this.name = name;
 		this.rating = rating;

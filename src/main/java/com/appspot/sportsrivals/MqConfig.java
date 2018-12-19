@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqConfig {
 
-	// MQ SETUP
 	private static final String topicExchangeName = "sportsrivals";
 	private static final String queueResults = "results";
 	private static final String queueRatingTeam = "rating-team";

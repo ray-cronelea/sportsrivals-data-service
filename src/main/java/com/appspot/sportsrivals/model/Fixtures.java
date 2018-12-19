@@ -14,6 +14,8 @@ public class Fixtures{
 	@DBRef private Teams awayTeam;
 	@DBRef private Sports sport;
 
+	public Fixtures(){};
+
 	public Fixtures(Integer homeTeamScore, Integer awayTeamScore, String kickOffTime, final Teams homeTeam, final Teams awayTeam, final Sports sport) {
 		this.homeTeamScore = homeTeamScore;
 		this.awayTeamScore = awayTeamScore;
