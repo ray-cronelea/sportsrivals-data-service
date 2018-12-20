@@ -28,7 +28,7 @@ public interface TeamsRepository extends MongoRepository<Teams, String> {
 
 }
 
-@Projection(name = "teamsProjection", types = { Teams.class })
+@Projection(name = "all", types = { Teams.class })
 interface teamsProjection {
 
 	String getId();

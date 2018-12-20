@@ -11,6 +11,7 @@ import org.springframework.web.filter.ForwardedHeaderFilter;
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
 
+	// Workaround for HTTPS href for rest controller when behind Traefik Proxy
 	@Bean
 	FilterRegistrationBean<ForwardedHeaderFilter> forwardedHeaderFilter()
 	{

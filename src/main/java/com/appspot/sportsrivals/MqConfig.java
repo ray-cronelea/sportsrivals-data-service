@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqConfig {
 
-	private static final String topicExchangeName = "sportsrivals_local";
-	private static final String queueResults = "results_local";
-	private static final String queueRating = "rating_local";
+	private static final String topicExchangeName = "sportsrivals-local";
+	private static final String queueResults = "results-local";
+	private static final String queueRanking = "ranking-local";
 
 	@Bean
 	Queue queueResults() {
@@ -21,8 +21,8 @@ public class MqConfig {
 	}
 
 	@Bean
-	Queue queueRating() {
-		return new Queue(queueRating);
+	Queue queueRanking() {
+		return new Queue(queueRanking);
 	}
 
 	@Bean
@@ -38,10 +38,10 @@ public class MqConfig {
 	}
 
 	@Bean
-	Binding bindingRatingTeam(Queue queueRating, TopicExchange exchange) {
-		return BindingBuilder.bind(queueRating)
+	Binding bindingRanking(Queue queueRanking, TopicExchange exchange) {
+		return BindingBuilder.bind(queueRanking)
 				.to(exchange)
-				.with("rating.#");
+				.with("ranking.#");
 	}
 
 }

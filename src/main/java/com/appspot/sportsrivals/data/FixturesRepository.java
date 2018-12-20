@@ -20,7 +20,7 @@ public interface FixturesRepository extends MongoRepository<Fixtures, String> {
 
 }
 
-@Projection(name = "fixturesProjection", types = { Fixtures.class })
+@Projection(name = "all", types = { Fixtures.class })
 interface fixturesProjection {
 	String getId();
 	Integer getHomeTeamScore();

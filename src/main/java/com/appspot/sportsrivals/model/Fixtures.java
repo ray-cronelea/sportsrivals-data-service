@@ -10,12 +10,11 @@ public class Fixtures{
 	private Integer awayTeamScore;
 	private String kickOffTime;
 	private String sportsRadarId;
-
 	@DBRef private Teams homeTeam;
 	@DBRef private Teams awayTeam;
 	@DBRef private Sports sport;
 
-	public Fixtures(){};
+	public Fixtures(){}
 
 	public Fixtures(Integer homeTeamScore, Integer awayTeamScore, String kickOffTime, String sportsRadarId, final Teams homeTeam, final Teams awayTeam, final Sports sport) {
 		this.homeTeamScore = homeTeamScore;
