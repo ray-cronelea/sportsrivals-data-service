@@ -6,14 +6,14 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurerAdapt
 import org.springframework.stereotype.Component;
 
 @Component
-public class ExposeEntityIdRestMvcConfiguration extends RepositoryRestConfigurerAdapter {
+public class RestConfiguration extends RepositoryRestConfigurerAdapter {
 
 	@Override
 	public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config) {
 		config.exposeIdsFor(Teams.class);
 		config.exposeIdsFor(States.class);
 		config.exposeIdsFor(Fixtures.class);
-		config.exposeIdsFor(Cities.class);//
-		config.exposeIdsFor(Sports.class);//
+		config.exposeIdsFor(Cities.class);
+		config.exposeIdsFor(Sports.class);
 	}
 }

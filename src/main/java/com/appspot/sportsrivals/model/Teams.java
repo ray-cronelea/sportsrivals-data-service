@@ -8,12 +8,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Teams {
 
 	@Id private String id;
-
 	private String name;
 	private Integer rating;
 	private String imageUrl;
 	private String sportRadarId;
-
 	@DBRef private Sports sport;
 	@DBRef private Cities city;
 	@DBRef private States state;
