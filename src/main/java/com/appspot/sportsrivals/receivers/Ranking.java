@@ -1,7 +1,6 @@
 package com.appspot.sportsrivals.receivers;
 
 import com.appspot.sportsrivals.data.CitiesRepository;
-import com.appspot.sportsrivals.data.SportsRepository;
 import com.appspot.sportsrivals.data.StatesRepository;
 import com.appspot.sportsrivals.data.TeamsRepository;
 import com.appspot.sportsrivals.model.Cities;
@@ -24,7 +23,7 @@ public class Ranking {
 
 	@Autowired public void setCitiesRepository(CitiesRepository citiesRepository) { this.citiesRepository = citiesRepository; }
 	@Autowired public void setStatesRepository(StatesRepository statesRepository) { this.statesRepository = statesRepository; }
-	@Autowired public void setTeamsRepositoryInterface(TeamsRepository teamsRepository) { this.teamsRepository = teamsRepository; }
+	@Autowired public void setTeamsRepository(TeamsRepository teamsRepository) { this.teamsRepository = teamsRepository; }
 
 	@RabbitListener(queues = "#{queueRanking.name}")
 	//public void receiveRanking(String message) throws InterruptedException{
