@@ -2,16 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import "typeface-roboto";
 import { withStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import RankingTable from './rankingTable';
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import BackIcon from '@material-ui/icons/ArrowBack';
-import InfoIcon from '@material-ui/icons/Info';
 
 const styles = theme => ({
     root: {
@@ -43,6 +36,7 @@ class SportsTabs extends Component {
             value: value,
             currentSport: this.state.sports[value]
         });
+        this.props.updateCurrentSport(this.state.sports[value]);
         console.log(value);
     };
 
@@ -52,8 +46,6 @@ class SportsTabs extends Component {
             value: 0,
             isLoaded: false,
             sports: [],
-            currentSport: [],
-            sportsTabsVisable: false
         };
     }
 
@@ -72,6 +64,7 @@ class SportsTabs extends Component {
                         sports: result._embedded.sports,
                         currentSport: result._embedded.sports[0]
                     });
+                    this.props.updateCurrentSport(result._embedded.sports[0]);
                 },
                 (error) => {
                     this.setState({
@@ -84,9 +77,11 @@ class SportsTabs extends Component {
 
     render() {
         const { classes } = this.props;
-        const { value, error, isLoaded, sports, currentSport } = this.state;
+        const { value, error, isLoaded, sports } = this.state;
 
-        if (error) {
+        if (!this.props.visible){
+            return null;
+        } else if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return (

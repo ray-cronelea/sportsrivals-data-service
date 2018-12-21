@@ -9,6 +9,11 @@ import TableBody from "@material-ui/core/TableBody/TableBody";
 import Paper from "@material-ui/core/Paper/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
 import CircularProgress from '@material-ui/core/CircularProgress';
+import DialogTitle from "@material-ui/core/DialogTitle/DialogTitle";
+import Dialog from "@material-ui/core/Dialog/Dialog";
+import DialogContent from "@material-ui/core/DialogContent/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions/DialogActions";
+import Button from "@material-ui/core/Button/Button";
 
 const styles = theme => ({
     root: {
@@ -18,8 +23,6 @@ const styles = theme => ({
         minWidth: 275,
         maxWidth: 900,
         justify: "center"
-    },
-    card: {
     },
     table: {
         minWidth: 700,
@@ -35,6 +38,16 @@ const styles = theme => ({
         marginTop: "50px",
         margin: theme.spacing.unit * 2,
     },
+    modalImage: {
+        width: "100px",
+        height: "100px"
+    },
+    cover: {
+        width: 151,
+    },
+    card: {
+        display: 'flex',
+    },
 });
 
 
@@ -43,7 +56,9 @@ class RankingTable extends React.Component{
         super(props);
         this.state = {
             isLoaded: false,
-            data: []
+            data: [],
+            selectedTeam: [],
+            open: false
         };
     }
 
@@ -88,10 +103,30 @@ class RankingTable extends React.Component{
             )
     }
 
+    handleRowClick = (team) => {
+        console.log(team.name);
+        this.setState({
+            selectedTeam: team
+        });
+        this.handleClickOpen();
+    }
+
+    handleClickOpen = () => {
+        this.setState({
+            open: true,
+        });
+    };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
     render() {
         const { classes } = this.props;
-        const { error, isLoaded, data } = this.state;
-        if (error) {
+        const { error, isLoaded, data, selectedTeam } = this.state;
+        if (! this.props.visible){
+            return null
+        } else if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return (
@@ -101,6 +136,7 @@ class RankingTable extends React.Component{
             );
         } else {
             return (
+                <div>
                 <Grid container justify = "center">
                     <Paper className={classes.root}>
                         <Table className={classes.table}>
@@ -120,7 +156,7 @@ class RankingTable extends React.Component{
 
                                 {data.teams.map(row => {
                                     return (
-                                        <TableRow key={row.id}>
+                                        <TableRow key={row.id} style={{cursor:'pointer'}} onClick={() => {this.handleRowClick(row)}}>
                                             <TableCell>
                                                 <img className={classes.thumbnail} src={row.imageUrl} alt="logo"/>
                                             </TableCell>
@@ -137,6 +173,18 @@ class RankingTable extends React.Component{
                         </Table>
                     </Paper>
                 </Grid>
+
+                <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
+                    <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>{selectedTeam.name}</DialogTitle>
+                        <DialogContent className={classes.card}>
+                            <img className={classes.cover} src={selectedTeam.imageUrl} alt="logo"/>
+                        </DialogContent>
+                        <DialogActions>
+                        <Button onClick={this.handleClose} color="primary">Close</Button>
+                    </DialogActions>
+                </Dialog>
+
+                </div>
             );
         }
     }
