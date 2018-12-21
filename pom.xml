@@ -134,7 +134,7 @@
                 <configuration>
                     <url>https://sportsrivals.cronelea.ie/manager/text</url>
                     <server>DockerTomcatServer</server>
-                    <path>/</path>
+                    <path>/sportsrivals-data-service</path>
                 </configuration>
             </plugin>
 

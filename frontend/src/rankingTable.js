@@ -86,7 +86,7 @@ class RankingTable extends React.Component{
                     <Paper className={classes.root}>
                         <Card className={classes.card}>
                             <CardContent>
-                                <Typography variant="h5" component="h2">Placeholder</Typography>
+                                <Typography variant="h5" component="h2">Sports Rivals NFL Team Rankings</Typography>
                             </CardContent>
                         </Card>
 
