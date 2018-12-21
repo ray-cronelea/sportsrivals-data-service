@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import CardContent from "@material-ui/core/CardContent/CardContent";
-import Typography from "@material-ui/core/Typography/Typography";
-import Card from "@material-ui/core/Card/Card";
 import Table from "@material-ui/core/Table/Table";
 import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
@@ -106,13 +103,6 @@ class RankingTable extends React.Component{
             return (
                 <Grid container justify = "center">
                     <Paper className={classes.root}>
-                        {/*
-                        <Card className={classes.card}>
-                            <CardContent>
-                                <Typography variant="h5" component="h2">{this.props.sport.name} Rankings</Typography>
-                            </CardContent>
-                        </Card>
-                        */}
                         <Table className={classes.table}>
                             <TableHead>
                                 <TableRow>

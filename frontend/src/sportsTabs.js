@@ -5,15 +5,13 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import RankingTable from './rankingTable';
 import CircularProgress from "@material-ui/core/CircularProgress/CircularProgress";
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import BackIcon from '@material-ui/icons/ArrowBack';
 import InfoIcon from '@material-ui/icons/Info';
-
-import RankingTable from './rankingTable';
-import SportsTabs from './sportsTabs';
 
 const styles = theme => ({
     root: {
@@ -37,17 +35,15 @@ const styles = theme => ({
     },
 });
 
-class App extends Component {
+class SportsTabs extends Component {
 
 
     handleChange = (event, value) => {
-
         this.setState({
             value: value,
             currentSport: this.state.sports[value]
         });
         console.log(value);
-
     };
 
     constructor(props) {
@@ -62,7 +58,6 @@ class App extends Component {
     }
 
     componentDidMount() {
-        document.title = "Sports Rivals"
         let url = "./api/sports?sort=name";
         console.log("Update Items Url: " + url );
 
@@ -102,37 +97,17 @@ class App extends Component {
         } else {
             return (
                 <div className="App">
-
-                    <AppBar position="static">
-                        <Toolbar>
-                            <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-                                <BackIcon />
-                            </IconButton>
-                            <Typography variant="h6" color="inherit" className={classes.grow}>
-                                Sports Rivals
-                            </Typography>
-                            <IconButton className={classes.infoButton} color="inherit" aria-label="Menu">
-                                <InfoIcon />
-                            </IconButton>
-                        </Toolbar>
-
-                        <SportsTabs visible={this.state.sportsTabsVisable} />
-
-                        <Tabs centered value={value} onChange={this.handleChange}>
-                            {sports.map(row => {
-                                return (
-                                    <Tab label={row.name} key={row.id}/>
-                                );
-                            })}
-                        </Tabs>
-                    </AppBar>
-
-                    <RankingTable visible={this.state.sportsTabsVisable} sport={currentSport}/>
-
+                    <Tabs centered value={value} onChange={this.handleChange}>
+                        {sports.map(row => {
+                            return (
+                                <Tab label={row.name} key={row.id}/>
+                            );
+                        })}
+                    </Tabs>
                 </div>
             );
         }
     }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(SportsTabs);
