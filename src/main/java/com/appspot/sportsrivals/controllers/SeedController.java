@@ -110,7 +110,6 @@ public class SeedController {
 		lc.add(new Cities("Boston", 1500.0, ""));
 		lc.add(new Cities("Bronx", 1500.0, ""));
 		lc.add(new Cities("Brooklyn", 1500.0, ""));
-		lc.add(new Cities("Buffallo", 1500.0, ""));
 		lc.add(new Cities("Buffalo", 1500.0, ""));
 		lc.add(new Cities("Calgary", 1500.0, ""));
 		lc.add(new Cities("Charlotte", 1500.0, ""));
@@ -240,7 +239,7 @@ public class SeedController {
 		List<List<String>> ls = new ArrayList<>();
 
 
-		ls.add(Arrays.asList("Buffallo Bills", "1500", "https://sportrankerstorage.blob.core.windows.net/nfl-team-logos/bills.svg", "768c92aa-75ff-4a43-bcc0-f2798c2e1724", "NFL", "Buffallo", "NY"));
+		ls.add(Arrays.asList("Buffalo Bills", "1500", "https://sportrankerstorage.blob.core.windows.net/nfl-team-logos/bills.svg", "768c92aa-75ff-4a43-bcc0-f2798c2e1724", "NFL", "Buffalo", "NY"));
 		ls.add(Arrays.asList("Miami Dolphins", "1500", "https://sportrankerstorage.blob.core.windows.net/nfl-team-logos/dolphins.svg", "4809ecb0-abd3-451d-9c4a-92a90b83ca06", "NFL", "Miami", "FL"));
 		ls.add(Arrays.asList("New York Jets", "1500", "https://sportrankerstorage.blob.core.windows.net/nfl-team-logos/jets.svg", "5fee86ae-74ab-4bdd-8416-42a9dd9964f3", "NFL", "New York", "NY"));
 		ls.add(Arrays.asList("New England Patriots", "1500", "https://sportrankerstorage.blob.core.windows.net/nfl-team-logos/patriots.svg", "97354895-8c77-4fd4-a860-32e62ea7382a", "NFL", "Boston", "MA"));

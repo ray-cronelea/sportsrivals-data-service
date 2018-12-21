@@ -31,18 +31,21 @@ public class Results {
 			ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 			System.out.println(ow.writeValueAsString(rm));
 
-			Teams ht = teamsRepository.findById(rm.getHomeTeamId()).get();
-			Teams at = teamsRepository.findById(rm.getAwayTeamId()).get();
-			Sports s = sportsRepository.findById(rm.getSportId()).get();
+			System.out.println("Home team id: " + rm.getHomeTeamId());
+			System.out.println("Away team id: " + rm.getAwayTeamId());
+
+			Teams ht = teamsRepository.findById(rm.getHomeTeamId().toString()).get();
+			Teams at = teamsRepository.findById(rm.getAwayTeamId().toString()).get();
 
 			Fixtures f = new Fixtures();
+
 			f.setHomeTeamScore(rm.getHomeTeamScore());
 			f.setAwayTeamScore(rm.getAwayTeamScore());
 			f.setKickOffTime(rm.getKickOffTimeUtc());
 			f.setSportsRadarId(rm.getSourceId());
 			f.setHomeTeam(ht);
 			f.setAwayTeam(at);
-			f.setSport(s);
+			f.setSport(ht.getSport());
 
 			fixturesRepository.save(f);
 

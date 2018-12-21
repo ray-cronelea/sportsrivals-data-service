@@ -9,10 +9,9 @@ import TableHead from "@material-ui/core/TableHead/TableHead";
 import TableRow from "@material-ui/core/TableRow/TableRow";
 import TableCell from "@material-ui/core/TableCell/TableCell";
 import TableBody from "@material-ui/core/TableBody/TableBody";
-import Checkbox from "@material-ui/core/Checkbox/Checkbox";
 import Paper from "@material-ui/core/Paper/Paper";
 import Grid from "@material-ui/core/Grid/Grid";
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = theme => ({
     root: {
@@ -34,7 +33,11 @@ const styles = theme => ({
     },
     thumbnail: {
         width: "100%"
-    }
+    },
+    progress: {
+        marginTop: "50px",
+        margin: theme.spacing.unit * 2,
+    },
 });
 
 
@@ -48,7 +51,24 @@ class RankingTable extends React.Component{
     }
 
     componentDidMount() {
-        let url = './api/teams/search/findBySport?id=5c1c2b4668b7a0f9f10374ad';
+        this.getRankingsForSport();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if (prevProps.sport.id !== this.props.sport.id) {
+            if (this.props.sport.id !== null) {
+
+                this.setState({
+                    isLoaded: false
+                });
+                this.getRankingsForSport();
+            }
+        }
+    }
+
+    getRankingsForSport() {
+        let sportId = this.props.sport.id;
+        let url = './api/teams/search/findBySportOrderByRatingDesc?id=' + sportId;
 
         console.log("Update Items Url: " + url );
 
@@ -56,7 +76,6 @@ class RankingTable extends React.Component{
             .then(res => res.json())
             .then(
                 (result) => {
-                    // Examine the text in the response
                     console.log(result);
                     this.setState({
                         isLoaded: true,
@@ -70,30 +89,34 @@ class RankingTable extends React.Component{
                     });
                 }
             )
-        {/*this.props.setReload(false);*/}
     }
 
     render() {
         const { classes } = this.props;
-        const { error, isLoaded, items } = this.state;
+        const { error, isLoaded, data } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return <div>Loading...</div>;
+            return (
+                <div>
+                    <CircularProgress className={classes.progress}/>
+                </div>
+            );
         } else {
             return (
                 <Grid container justify = "center">
                     <Paper className={classes.root}>
+                        {/*
                         <Card className={classes.card}>
                             <CardContent>
-                                <Typography variant="h5" component="h2">Sports Rivals NFL Team Rankings</Typography>
+                                <Typography variant="h5" component="h2">{this.props.sport.name} Rankings</Typography>
                             </CardContent>
                         </Card>
-
+                        */}
                         <Table className={classes.table}>
                             <TableHead>
                                 <TableRow>
-                                    <TableCell className={classes.tabbutton}>Done</TableCell>
+                                    <TableCell className={classes.tabbutton}>Logo</TableCell>
                                     <TableCell>Name</TableCell>
                                     <TableCell>Ranking</TableCell>
                                     <TableCell>Sport</TableCell>
@@ -105,7 +128,7 @@ class RankingTable extends React.Component{
 
                             <TableBody>
 
-                                {this.state.data.teams.map(row => {
+                                {data.teams.map(row => {
                                     return (
                                         <TableRow key={row.id}>
                                             <TableCell>

@@ -20,6 +20,9 @@ public interface TeamsRepository extends MongoRepository<Teams, String> {
 	List<Teams> findByCity(@Param("id") String id);
 	List<Teams> findByState(@Param("id") String id);
 	List<Teams> findBySport(@Param("id") String id);
+	List<Teams> findByCityOrderByRatingDesc(@Param("id") String id);
+	List<Teams> findByStateOrderByRatingDesc(@Param("id") String id);
+	List<Teams> findBySportOrderByRatingDesc(@Param("id") String id);
 
 	// Used to prevent resource deletion
 	@RestResource(exported = false)
