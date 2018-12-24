@@ -95,7 +95,6 @@ public class SeedController {
 		ls.add(new Sports("NFL","American Football","https://sportrankerstorage.blob.core.windows.net/sports-images/nfl.svg"));
 		ls.add(new Sports("NHL","Ice Hockey","https://sportrankerstorage.blob.core.windows.net/sports-images/nhl.svg"));
 		ls.add(new Sports("MLB", "Baseball","https://sportrankerstorage.blob.core.windows.net/sports-images/mlb.svg"));
-		ls.add(new Sports("NASCAR", "Motor Racing",""));
 
 		for(Sports s : ls){
 			sportsRepository.save(s);
