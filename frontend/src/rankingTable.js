@@ -14,6 +14,7 @@ import Dialog from "@material-ui/core/Dialog/Dialog";
 import DialogContent from "@material-ui/core/DialogContent/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions/DialogActions";
 import Button from "@material-ui/core/Button/Button";
+import Typography from "@material-ui/core/Typography/Typography";
 
 const styles = theme => ({
     root: {
@@ -48,6 +49,20 @@ const styles = theme => ({
     card: {
         display: 'flex',
     },
+    dialogImage: {
+        width: 128,
+        height: 128,
+    },
+    dialogImg: {
+        margin: 'auto',
+        display: 'block',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        align: 'center',
+    },
+    brBorder: {
+        borderBottom: `1px solid ${theme.palette.divider}`,
+    },
 });
 
 
@@ -58,6 +73,9 @@ class RankingTable extends React.Component{
             isLoaded: false,
             data: [],
             selectedTeam: [],
+            selectedSport: [],
+            selectedCity: [],
+            selectedState: [],
             open: false
         };
     }
@@ -106,7 +124,10 @@ class RankingTable extends React.Component{
     handleRowClick = (team) => {
         console.log(team.name);
         this.setState({
-            selectedTeam: team
+            selectedTeam: team,
+            selectedSport: team.sport,
+            selectedCity: team.city,
+            selectedState: team.state,
         });
         this.handleClickOpen();
     }
@@ -123,7 +144,7 @@ class RankingTable extends React.Component{
 
     render() {
         const { classes } = this.props;
-        const { error, isLoaded, data, selectedTeam } = this.state;
+        const { error, isLoaded, data, selectedTeam, selectedSport, selectedState, selectedCity } = this.state;
         if (! this.props.visible){
             return null
         } else if (error) {
@@ -175,9 +196,43 @@ class RankingTable extends React.Component{
                 </Grid>
 
                 <Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
-                    <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>{selectedTeam.name}</DialogTitle>
+                    <DialogTitle id="customized-dialog-title" onClose={this.handleClose} style={{textAlign:'center'}}>{selectedTeam.name}</DialogTitle>
                         <DialogContent className={classes.card}>
-                            <img className={classes.cover} src={selectedTeam.imageUrl} alt="logo"/>
+
+                            <Grid container spacing={16} alignItems="center" justify="center">
+                                <Grid item >
+                                    <Grid className={classes.dialogImage}>
+                                        <img className={classes.dialogImg} alt="complex" src={selectedTeam.imageUrl} />
+                                    </Grid>
+                                </Grid>
+                                <Grid item xs={12} sm container>
+                                    <Grid item xs container direction="column" spacing={16} style={{width:'150px'}}>
+
+                                        <Grid item xs>
+                                            <Typography gutterBottom style={{textAlign: 'center'}}>
+                                                Sport: {selectedSport.sportName}
+                                            </Typography>
+                                            <Typography gutterBottom className={classes.brBorder}  style={{textAlign: 'center'}}>
+                                                Ranking: {parseFloat(selectedTeam.rating).toFixed(2)}
+                                            </Typography>
+                                            <Typography gutterBottom style={{textAlign: 'center'}}>
+                                                City: {selectedCity.name}
+                                            </Typography>
+                                            <Typography gutterBottom className={classes.brBorder} style={{textAlign: 'center'}}>
+                                                Ranking: {parseFloat(selectedCity.rating).toFixed(2)}
+                                            </Typography>
+                                            <Typography gutterBottom style={{textAlign: 'center'}}>
+                                                State: {selectedState.abbreviation}
+                                            </Typography>
+                                            <Typography gutterBottom style={{textAlign: 'center'}}>
+                                                Ranking: {parseFloat(selectedState.rating).toFixed(2)}
+                                            </Typography>
+                                        </Grid>
+
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
                         </DialogContent>
                         <DialogActions>
                         <Button onClick={this.handleClose} color="primary">Close</Button>

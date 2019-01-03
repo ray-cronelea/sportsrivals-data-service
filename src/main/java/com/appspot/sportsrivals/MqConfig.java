@@ -10,9 +10,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MqConfig {
 
-	private static final String topicExchangeName = "sportsrivals-local";
-	private static final String queueResults = "results-local";
-	private static final String queueRanking = "ratings-local";
+	private static final String topicExchangeName = "sportsrivals";
+	private static final String queueResults = "results";
+	private static final String queueRanking = "ratings";
 
 	@Bean
 	Queue queueResults() {
