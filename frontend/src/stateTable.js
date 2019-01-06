@@ -108,9 +108,9 @@ class StateTable extends React.Component{
                                 <TableHead>
                                     <TableRow>
                                         <TableCell className={classes.tabbutton}>Logo</TableCell>
-                                        <TableCell>Abbreviation</TableCell>
                                         <TableCell>Name</TableCell>
                                         <TableCell>Ranking</TableCell>
+                                        <TableCell>Abbreviation</TableCell>
                                         <TableCell>Captial</TableCell>
                                     </TableRow>
                                 </TableHead>
@@ -124,9 +124,9 @@ class StateTable extends React.Component{
                                                 <TableCell>
                                                     <img className={classes.thumbnail} src={row.imageUrl} alt="logo"/>
                                                 </TableCell>
-                                                <TableCell>{row.name}</TableCell>
                                                 <TableCell>{row.abbreviation}</TableCell>
                                                 <TableCell>{parseFloat(row.rating).toFixed(2)}</TableCell>
+                                                <TableCell>{row.name}</TableCell>
                                                 <TableCell>{row.capital}</TableCell>
                                             </TableRow>
                                         );

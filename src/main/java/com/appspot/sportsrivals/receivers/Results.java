@@ -2,7 +2,6 @@ package com.appspot.sportsrivals.receivers;
 
 import com.appspot.sportsrivals.data.*;
 import com.appspot.sportsrivals.model.Fixtures;
-import com.appspot.sportsrivals.model.Sports;
 import com.appspot.sportsrivals.model.Teams;
 import com.appspot.sportsrivals.receivers.model.ResultsMessage;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,11 +14,9 @@ import org.springframework.stereotype.Component;
 public class Results {
 
 	private TeamsRepository teamsRepository;
-	private SportsRepository sportsRepository;
 	private FixturesRepository fixturesRepository;
 
 	@Autowired public void setTeamsRepository(TeamsRepository teamsRepository) { this.teamsRepository = teamsRepository; }
-	@Autowired public void setSportsRepository(SportsRepository sportsRepository) { this.sportsRepository = sportsRepository; }
 	@Autowired public void setFixtureRepository(FixturesRepository fixturesRepository) { this.fixturesRepository = fixturesRepository; }
 
 	@RabbitListener(queues = "#{queueResults.name}")

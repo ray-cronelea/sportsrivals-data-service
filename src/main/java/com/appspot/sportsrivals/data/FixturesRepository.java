@@ -31,4 +31,3 @@ interface fixturesProjection {
 	Teams getAwayTeam();
 	Sports getSport();
 }
-

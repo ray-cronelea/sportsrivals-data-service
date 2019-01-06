@@ -40,8 +40,6 @@ public class Ranking {
 			int rct = rm.getRankingChangeType();
 			String id = rm.getId();
 
-			// TODO: Exception thrown if object doesn't exist
-
 			if (rct == RankingChangeType.TEAM) {
 
 				System.out.println("RankingChangeType is TEAM");
